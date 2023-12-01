@@ -61,10 +61,10 @@ app.post('/api/employeelist', async (req, res) => {
     const { name, location, position, salary } = req.body;
     try {
         const newEmployee = await EmployeeModel.create({
-            employeeName: name,
-            officeLocation: location,
-            employeePos: position,
-            employeeSalary: salary
+            name: name,
+            location: location,
+            position: position,
+            salary: salary
         });
         res.status(201).json(newEmployee);
     } catch (error) {
@@ -96,10 +96,10 @@ app.put('/api/employeelist', async (req, res) => {
     try {
         const { name, location, position, salary } = req.body;
         const updateObject = {};
-        if (name) updateObject.employeeName = name;
-        if (location) updateObject.officeLocation = location;
-        if (position) updateObject.employeePos = position;
-        if (salary) updateObject.employeeSalary = salary;
+        if (name) updateObject.name = name;
+        if (location) updateObject.location = location;
+        if (position) updateObject.position = position;
+        if (salary) updateObject.salary = salary;
 
         const updatedEmployee = await EmployeeModel.findOneAndUpdate({}, { $set: updateObject }, { new: true });
 
